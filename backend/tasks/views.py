@@ -5,28 +5,21 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 
 from .models import Task
 from .serializers import TaskSerializer, TaskCreateSerializer
-
+from core.permissions import IsAdmin
 
 
 class TaskListCreateView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-
     filterset_fields = ['status']
-
     search_fields = ['title', 'description']
-
     ordering_fields = ['created_at', 'updated_at']
     ordering = ['-created_at']
 
     def get_queryset(self):
-        user = self.request.user
-
-        if user.role == 'admin':
-            return Task.objects.all()
-
-        return Task.objects.filter(user=user)
+        
+        return Task.objects.filter(user=self.request.user)
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
@@ -42,9 +35,12 @@ class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        user = self.request.user
+        return Task.objects.filter(user=self.request.user)
 
-        if user.role == 'admin':
-            return Task.objects.all()
 
-        return Task.objects.filter(user=user)
+
+
+class AdminTaskListView(generics.ListAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+    permission_classes = [IsAdmin]

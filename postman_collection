@@ -1,0 +1,389 @@
+{
+  "info": {
+    "_postman_id": "11532090-fcd9-441d-a259-4e7cf848ce1f",
+    "name": "task_api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52578676",
+    "_collection_link": "https://go.postman.co/collection/52578676-11532090-fcd9-441d-a259-4e7cf848ce1f?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "pratulkumar2003@gmail.com",
+                  "type": "text",
+                  "uuid": "f99f9a29-d90d-4265-80c0-0dc57bebb16e"
+                },
+                {
+                  "key": "password",
+                  "value": "pratul",
+                  "type": "text",
+                  "uuid": "3d0b4d07-e761-4f2e-b940-6432732d004e"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/auth/login/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login",
+                ""
+              ]
+            },
+            "description": "This API authenticates users and returns JWT tokens. Use access token for protected routes."
+          },
+          "response": []
+        },
+        {
+          "name": "Register",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc2MTk2OTQ0LCJpYXQiOjE3NzYxOTMzNDQsImp0aSI6ImY5N2M5MDFjOTQ4YjRkZWQ5NzY1OGNlNDQyNGM2MWQ3IiwidXNlcl9pZCI6IjEifQ.TPFoD2lksr0cDlhJFC18AFySndWCNxmU3cclWNqvimM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "example@gmail.com",
+                  "type": "text",
+                  "uuid": "9ffbda6a-9483-4761-bd71-7c7d58399411"
+                },
+                {
+                  "key": "name",
+                  "value": "example",
+                  "type": "text",
+                  "uuid": "1022ddfe-b576-4262-8066-9b51d49c7f77"
+                },
+                {
+                  "key": "password",
+                  "value": "example",
+                  "type": "text",
+                  "uuid": "b34d6297-872a-4db5-9807-f68e9f99f9fe"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/auth/register/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "register",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get users",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc2MTk2OTQ0LCJpYXQiOjE3NzYxOTMzNDQsImp0aSI6ImY5N2M5MDFjOTQ4YjRkZWQ5NzY1OGNlNDQyNGM2MWQ3IiwidXNlcl9pZCI6IjEifQ.TPFoD2lksr0cDlhJFC18AFySndWCNxmU3cclWNqvimM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc2MTk2OTQ0LCJpYXQiOjE3NzYxOTMzNDQsImp0aSI6ImY5N2M5MDFjOTQ4YjRkZWQ5NzY1OGNlNDQyNGM2MWQ3IiwidXNlcl9pZCI6IjEifQ.TPFoD2lksr0cDlhJFC18AFySndWCNxmU3cclWNqvimM",
+                  "type": "text",
+                  "uuid": "537a5992-2cd2-4914-89a3-35672e3c15a7"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/auth/users/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "users",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tasks",
+      "item": [
+        {
+          "name": "Create Task",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc2MTk4NjE4LCJpYXQiOjE3NzYxOTUwMTgsImp0aSI6IjRiZThiMTFjYWQ4ODRhZTdhZTExOTZjNzFhZGQ2YjI2IiwidXNlcl9pZCI6IjEifQ.YcJJzqgJ55X1pH8N4SzYR90fMuWBD45LlaWHY04LIK8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Learn Django\",\r\n  \"description\": \"Complete backend project\",\r\n  \"status\": \"pending\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/tasks/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "tasks",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Tasks",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc2MTk4NjE4LCJpYXQiOjE3NzYxOTUwMTgsImp0aSI6IjRiZThiMTFjYWQ4ODRhZTdhZTExOTZjNzFhZGQ2YjI2IiwidXNlcl9pZCI6IjEifQ.YcJJzqgJ55X1pH8N4SzYR90fMuWBD45LlaWHY04LIK8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Learn Django\",\r\n  \"description\": \"Complete backend project\",\r\n  \"status\": \"pending\"\r\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/tasks/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "tasks",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Task by ID",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc2MTk4NjE4LCJpYXQiOjE3NzYxOTUwMTgsImp0aSI6IjRiZThiMTFjYWQ4ODRhZTdhZTExOTZjNzFhZGQ2YjI2IiwidXNlcl9pZCI6IjEifQ.YcJJzqgJ55X1pH8N4SzYR90fMuWBD45LlaWHY04LIK8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Learn Django\",\r\n  \"description\": \"Complete backend project\",\r\n  \"status\": \"pending\"\r\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/tasks/1/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "tasks",
+                "1",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Task",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc2MTk4NjE4LCJpYXQiOjE3NzYxOTUwMTgsImp0aSI6IjRiZThiMTFjYWQ4ODRhZTdhZTExOTZjNzFhZGQ2YjI2IiwidXNlcl9pZCI6IjEifQ.YcJJzqgJ55X1pH8N4SzYR90fMuWBD45LlaWHY04LIK8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Learn DRF\",\r\n  \"description\": \"Updated task\",\r\n  \"status\": \"completed\"\r\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/tasks/1/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "tasks",
+                "1",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Task",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc2MTk4NjE4LCJpYXQiOjE3NzYxOTUwMTgsImp0aSI6IjRiZThiMTFjYWQ4ODRhZTdhZTExOTZjNzFhZGQ2YjI2IiwidXNlcl9pZCI6IjEifQ.YcJJzqgJ55X1pH8N4SzYR90fMuWBD45LlaWHY04LIK8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Learn DRF\",\r\n  \"description\": \"Updated task\",\r\n  \"status\": \"completed\"\r\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/tasks/1/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "tasks",
+                "1",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
