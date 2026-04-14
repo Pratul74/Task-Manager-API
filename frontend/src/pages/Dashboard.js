@@ -5,30 +5,43 @@ import TaskList from "../components/TaskList";
 
 export default function Dashboard() {
   const [tasks, setTasks] = useState([]);
+  const [search, setSearch] = useState("");
+  const [status, setStatus] = useState("");
+
   const user = JSON.parse(localStorage.getItem("user"));
 
   const fetchTasks = useCallback(async () => {
     try {
-      let res;
+      let baseUrl;
 
       if (user?.role === "admin") {
-        res = await API.get("/tasks/admin/");
+        baseUrl = "/tasks/admin/";
       } else {
-        res = await API.get("/tasks/");
+        baseUrl = "/tasks/";
       }
+
+      const params = new URLSearchParams();
+
+      if (search) params.append("search", search);
+      if (status) params.append("status", status);
+
+      const url = `${baseUrl}?${params.toString()}`;
+
+      const res = await API.get(url);
 
       setTasks(res.data.results || res.data);
     } catch (err) {
       console.log(err);
       alert("Failed to load tasks");
     }
-  }, [user]);
+  }, [user, search, status]);
+
 
   useEffect(() => {
     fetchTasks();
   }, [fetchTasks]);
 
-  // 🚪 Logout
+
   const handleLogout = () => {
     localStorage.clear();
     window.location.href = "/";
@@ -38,6 +51,7 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 p-6">
       
       <div className="max-w-4xl mx-auto">
+        
         
         <div className="flex justify-between items-center bg-white p-5 rounded-2xl shadow-md mb-6">
           
@@ -65,9 +79,32 @@ export default function Dashboard() {
           </button>
         </div>
 
-        <TaskForm refresh={fetchTasks} />
+        
+        <div className="bg-white p-4 rounded-xl shadow mb-6 flex gap-3">
+          
+          <input
+            placeholder="Search tasks..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="border p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+
+          <select
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            className="border p-2 rounded"
+          >
+            <option value="">All</option>
+            <option value="pending">Pending</option>
+            <option value="in_progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
 
         
+        <TaskForm refresh={fetchTasks} />
+
+
         <TaskList tasks={tasks} refresh={fetchTasks} user={user} />
       </div>
     </div>

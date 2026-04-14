@@ -38,8 +38,6 @@ class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
         return Task.objects.filter(user=self.request.user)
 
 
-
-
 class AdminTaskListView(generics.ListAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer

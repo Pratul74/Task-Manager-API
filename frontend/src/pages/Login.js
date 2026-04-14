@@ -30,14 +30,14 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-purple-200">
       
-      {/* LOGIN CARD */}
+ 
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
         
         <h2 className="text-2xl font-bold text-center mb-6">
           Welcome Back 👋
         </h2>
 
-        {/* EMAIL */}
+  
         <input
           type="email"
           placeholder="Email"
@@ -46,7 +46,7 @@ export default function Login() {
           className="border p-3 rounded w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
 
-        {/* PASSWORD */}
+
         <input
           type="password"
           placeholder="Password"
@@ -55,7 +55,7 @@ export default function Login() {
           className="border p-3 rounded w-full mb-6 focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
 
-        {/* LOGIN BUTTON */}
+
         <button
           onClick={handleLogin}
           className="bg-blue-500 text-white w-full py-3 rounded-lg font-semibold hover:bg-blue-600 transition"
@@ -63,7 +63,6 @@ export default function Login() {
           Login
         </button>
 
-        {/* REGISTER LINK */}
         <p className="text-center text-sm text-gray-500 mt-4">
           Don’t have an account?{" "}
           <span
