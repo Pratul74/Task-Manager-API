@@ -9,11 +9,14 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ['email', 'name']
     list_filter = ['role', 'is_staff', 'is_active']
     
+    list_per_page = 20
+    date_hierarchy = 'created_at'
+
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal Info', {'fields': ('name',)}),
         ('Permissions', {'fields': ('role', 'is_staff', 'is_active', 'is_superuser')}),
-        ('Important Dates', {'fields': ('last_login',)}),
+        ('Important Dates', {'fields': ('last_login', 'created_at')}),
     )
 
     add_fieldsets = (
@@ -23,7 +26,7 @@ class UserAdmin(BaseUserAdmin):
         }),
     )
 
-    readonly_fields = ['last_login']
+    readonly_fields = ['last_login', 'created_at']
 
 
 admin.site.register(User, UserAdmin)
