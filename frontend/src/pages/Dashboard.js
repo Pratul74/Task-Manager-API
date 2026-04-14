@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import API from "../api";
 import TaskForm from "../components/TaskForm";
 import TaskList from "../components/TaskList";
@@ -7,15 +7,28 @@ export default function Dashboard() {
   const [tasks, setTasks] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
 
-  const fetchTasks = async () => {
-    const res = await API.get("/tasks/");
-    setTasks(res.data.results);
-  };
+  const fetchTasks = useCallback(async () => {
+    try {
+      let res;
+
+      if (user?.role === "admin") {
+        res = await API.get("/tasks/admin/");
+      } else {
+        res = await API.get("/tasks/");
+      }
+
+      setTasks(res.data.results || res.data);
+    } catch (err) {
+      console.log(err);
+      alert("Failed to load tasks");
+    }
+  }, [user]);
 
   useEffect(() => {
     fetchTasks();
-  }, []);
+  }, [fetchTasks]);
 
+  // 🚪 Logout
   const handleLogout = () => {
     localStorage.clear();
     window.location.href = "/";
@@ -24,10 +37,8 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 p-6">
       
-      {/* CONTAINER */}
       <div className="max-w-4xl mx-auto">
         
-        {/* HEADER */}
         <div className="flex justify-between items-center bg-white p-5 rounded-2xl shadow-md mb-6">
           
           <div>
@@ -54,10 +65,9 @@ export default function Dashboard() {
           </button>
         </div>
 
-        {/* TASK FORM */}
         <TaskForm refresh={fetchTasks} />
 
-        {/* TASK LIST */}
+        
         <TaskList tasks={tasks} refresh={fetchTasks} user={user} />
       </div>
     </div>
